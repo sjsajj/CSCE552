@@ -8,7 +8,7 @@ public class healthBar : MonoBehaviour
     private int maxHealth = 100;
     private int currentHealth = 100;
 
-    //use this to control how much space the value read out has
+    // use this to control how much space the value read out has
     public int textSize = 50;
 
     //positioning the bar

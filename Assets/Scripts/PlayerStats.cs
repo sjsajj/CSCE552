@@ -106,11 +106,13 @@ public class PlayerStats : MonoBehaviour
 
     /// <summary>
     /// lets you modify the value of hydration by sending in how much you want to change it by
+    /// </summary>
+    /// <remarks>
     /// If you would like to increment the value send in a positive value
     /// If you would like to decrement thevalue send in a negative value
-    /// 
     /// The amount you send in will be added to the value of hydration
-    /// </summary>
+    /// </remarks>
+    /// 
     /// <param name="amount"></param>
     public void adjustHydration(float amount)
     {
@@ -119,11 +121,13 @@ public class PlayerStats : MonoBehaviour
 
     /// <summary>
     /// lets you modify the value of hunger by sending in how much you want to change it by
+    /// </summary>
+    /// <remarks>
     /// If you would like to increment the value send in a positive value
     /// If you would like to decrement thevalue send in a negative value
-    /// 
     /// The amount you send in will be added to the value of hunger
-    /// </summary>
+    /// </remarks>
+    /// 
     /// <param name="amount"></param>
     public void adjustHunger(float amount)
     {
@@ -132,11 +136,12 @@ public class PlayerStats : MonoBehaviour
 
     /// <summary>
     /// lets you modify the value of health by sending in how much you want to change it by
-    ///
-    /// If you pass in a positive number it will not change the health
-    /// 
-    /// The amount you send in will be added to the value of hunger
     /// </summary>
+    ///<remarks>
+    /// If you pass in a positive number it will not change the health
+    /// The amount you send in will be added to the value of hunger
+    ///</remarks>
+    /// 
     /// <param name="amount"></param>
     public void adjustHealth(float amount)
     {
