@@ -12,6 +12,11 @@ public class PlayerStats : MonoBehaviour
     public float hunger = 100;
     public float hydration = 100;
 
+    //for bounds checking
+    private float maxHealth = 100;
+    private float maxHunger = 100;
+    private float maxHydration = 100;
+
     //the loss rate of the stats
     public float healthLossRate = 0;
     public float hungerLossRate = 0;
@@ -29,6 +34,11 @@ public class PlayerStats : MonoBehaviour
         playerHealthBar.SetInitialValues((int)health);
         playerHydrationBar.SetInitialValues((int)hydration);
         playerHungerBar.SetInitialValues((int)hunger);
+
+        //setting the max values
+        maxHealth = health;
+        maxHunger = hunger;
+        maxHydration = hydration;
     }
 
     // Update is called once per frame
@@ -87,7 +97,7 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     private void statBoundsChecking()
     {
-        //bounds checking
+        //bounds checking min
         if (hydration <= 0)
         {
             hydration = 0;
@@ -101,6 +111,22 @@ public class PlayerStats : MonoBehaviour
         if (hunger <= 0)
         {
             hunger = 0;
+        }
+
+        //bounds checking max
+        if (hydration > maxHydration)
+        {
+            hydration = maxHydration;
+        }
+
+        if (health > maxHealth)
+        {
+            health = 0;
+        }
+
+        if (hunger > maxHunger)
+        {
+            hunger = maxHunger;
         }
     }
 
