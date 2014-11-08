@@ -8,6 +8,51 @@ public class hydrationBar : MonoBehaviour
     private int maxHydration = 100;
     private int currentHydration = 100;
 
+    /// <summary>
+    /// the maximum value displayed on the bar
+    /// </summary>
+    public int MaxHydration
+    {
+        get { return maxHydration; }
+        set
+        {
+            if (value > 0)
+            {
+                maxHydration = value;
+            }
+
+            else
+            {
+                maxHydration = 1;
+            }
+        }
+    }
+
+    /// <summary>
+    /// the current value displayed on the bar
+    /// </summary>
+    public int CurrentHydration
+    {
+        get { return currentHydration; }
+        set
+        {
+            if (value < 0)
+            {
+                currentHydration = 0;
+            }
+
+            else if (value >= maxHydration)
+            {
+                currentHydration = maxHydration;
+            }
+
+            else
+            {
+                currentHydration = value;
+            }
+        }
+    }
+
     //use this to control how much space the value read out has
     public int textSize = 50;
 
@@ -32,17 +77,14 @@ public class hydrationBar : MonoBehaviour
         screenSize = Screen.width / barWidth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        AdjustCurrentValue();
-    }
-
     /// <summary>
     /// draws the bar on screen
     /// </summary>
     void OnGUI()
     {
+        //this is what controles the size of the bar in the horazontal direction
+        valueBarLength = (screenSize) * (currentHydration / (float)maxHydration);
+
         //the background
         GUI.DrawTexture(new Rect(positionLeft, Screen.height - positionTop, screenSize, barHeight), backgroundImage);
 
@@ -51,53 +93,5 @@ public class hydrationBar : MonoBehaviour
 
         //the text that displays the current health over the max helth
         GUI.Label(new Rect(positionLeft, Screen.height - positionTop, textSize, barHeight), ((float)currentHydration / (float)maxHydration) * 100 + "%");
-    }
-
-    /// <summary>
-    /// takes care of updating the bar
-    /// </summary>
-    private void AdjustCurrentValue()
-    {
-        //bounds checking
-        if (currentHydration <= 0)
-        {
-            currentHydration = 0;
-        }
-
-        if (currentHydration >= maxHydration)
-        {
-            currentHydration = maxHydration;
-        }
-
-        if (maxHydration < 1)
-        {
-            maxHydration = 1;
-        }
-
-        //this is what controles the size of the bar in the horazontal direction
-        valueBarLength = (screenSize) * (currentHydration / (float)maxHydration);
-    }
-
-    /// <summary>
-    /// allows for another script to change the starting values of this bar
-    /// </summary>
-    /// <param name="newValue"></param>
-    public void SetInitialValues(int newValue)
-    {
-        maxHydration = newValue;
-        currentHydration = newValue;
-    }
-
-    /// <summary>
-    /// sets the value of the bar
-    /// does bounds checking on the value
-    /// </summary>
-    /// <param name="newValue"></param>
-    public void SetCurrentValue(int newValue)
-    {
-        currentHydration = newValue;
-
-        //does bounds checking on the new value
-        AdjustCurrentValue();
     }
 }

@@ -8,6 +8,52 @@ public class hungerBar : MonoBehaviour
     private int maxHunger = 100;
     private int currentHunger = 100;
 
+    /// <summary>
+    /// the maximum value displayed on the bar
+    /// </summary>
+    public int MaxHunger
+    {
+        get { return maxHunger; }
+        set
+        {
+            if (value > 0)
+            {
+                maxHunger = value;
+            }
+
+            else
+            {
+                maxHunger = 1;
+            }
+        }
+    }
+
+    /// <summary>
+    /// the current value displayed on the bar
+    /// </summary>
+    public int CurrentHunger
+    {
+        get { return currentHunger; }
+        set
+        {
+            //bounds checking
+            if (value <= 0)
+            {
+                currentHunger = 0;
+            }
+
+            if (value >= maxHunger)
+            {
+                currentHunger = maxHunger;
+            }
+
+            else
+            {
+                currentHunger = value;
+            }
+        }
+    }
+
     //use this to control how much space the value read out has
     public int textSize = 50;
 
@@ -32,16 +78,14 @@ public class hungerBar : MonoBehaviour
         screenSize = Screen.width / barWidth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     /// <summary>
     /// draws the bar on screen
     /// </summary>
     void OnGUI()
     {
+        //this is what controles the size of the bar in the horazontal direction
+        valueBarLength = (screenSize) * (currentHunger / (float)maxHunger);
+
         //the background
         GUI.DrawTexture(new Rect(positionLeft, Screen.height - positionTop, screenSize, barHeight), backgroundImage);
 
@@ -50,53 +94,5 @@ public class hungerBar : MonoBehaviour
 
         //the text that displays the current health over the max helth
         GUI.Label(new Rect(positionLeft, Screen.height - positionTop, textSize, barHeight), ((float)currentHunger / (float)maxHunger) * 100 + "%");
-    }
-
-    /// <summary>
-    /// takes care of updating the bar
-    /// </summary>
-    public void AdjustCurrentValue()
-    {
-        //bounds checking
-        if (currentHunger <= 0)
-        {
-            currentHunger = 0;
-        }
-
-        if (currentHunger >= maxHunger)
-        {
-            currentHunger = maxHunger;
-        }
-
-        if (maxHunger < 1)
-        {
-            maxHunger = 1;
-        }
-
-        //this is what controles the size of the bar in the horazontal direction
-        valueBarLength = (screenSize) * (currentHunger / (float)maxHunger);
-    }
-
-    /// <summary>
-    /// allows for another script to change the starting values of this bar
-    /// </summary>
-    /// <param name="newValue"></param>
-    public void SetInitialValues(int newValue)
-    {
-        maxHunger = newValue;
-        currentHunger = newValue;
-    }
-
-    /// <summary>
-    /// sets the value of the bar
-    /// does bounds checking on the value
-    /// </summary>
-    /// <param name="newValue"></param>
-    public void SetCurrentValue(int newValue)
-    {
-        currentHunger = newValue;
-
-        //does bounds checking on the new value
-        AdjustCurrentValue();
     }
 }

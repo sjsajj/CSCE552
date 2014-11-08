@@ -41,6 +41,9 @@ public class GUIBarHorizontal : MonoBehaviour
     //draws the bar on screen
     void OnGUI()
     {
+        //this is what controles the size of the bar in the horazontal direction
+        valueBarLength = (screenSize) * (currentValue / (float)maxValue);
+
         //the background
         GUI.DrawTexture(new Rect(positionLeft, Screen.height - positionTop, screenSize, barHeight), backgroundImage);
 
@@ -72,7 +75,5 @@ public class GUIBarHorizontal : MonoBehaviour
             maxValue = 1;
         }
 
-        //this is what controles the size of the bar in the horazontal direction
-        valueBarLength = (screenSize) * (currentValue / (float)maxValue);
     }
 }

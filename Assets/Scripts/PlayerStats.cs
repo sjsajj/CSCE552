@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/*This script will be responsible for handing the players stats.
- * This includes updateing the values for all the GUI elements that depend on the players stats.
- * */
+/// <summary>
+///This script will be responsible for handing the players stats.
+///This includes updateing the values for all the GUI elements that depend on the players stats.
+/// </summary>
 public class PlayerStats : MonoBehaviour
 {
 
@@ -11,6 +12,8 @@ public class PlayerStats : MonoBehaviour
     public float health = 100;
     public float hunger = 100;
     public float hydration = 100;
+    public int daysUntilRescued = 10;
+    public int daysUntilFound = 10;
 
     //for bounds checking
     private float maxHealth = 100;
@@ -25,20 +28,30 @@ public class PlayerStats : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //accessing the other scripts to set the initial values of the bars
+        //accessing the other scripts to set the initial values of the GUI elements
         healthBar playerHealthBar = GetComponent<healthBar>();
         hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
         hungerBar playerHungerBar = GetComponent<hungerBar>();
-
-        //setting the initial values of the bars
-        playerHealthBar.SetInitialValues((int)health);
-        playerHydrationBar.SetInitialValues((int)hydration);
-        playerHungerBar.SetInitialValues((int)hunger);
+        winLoss playerWinLoss = GetComponent<winLoss>();
 
         //setting the max values
         maxHealth = health;
         maxHunger = hunger;
         maxHydration = hydration;
+
+        //setting the initial values of the bars
+        playerHealthBar.CurrentHealth = (int)health;
+        playerHealthBar.MaxHealth = (int)maxHealth;
+
+        playerHydrationBar.CurrentHydration = (int)hydration;
+        playerHydrationBar.MaxHydration = (int)maxHydration;
+
+        playerHungerBar.CurrentHunger = (int)hunger;
+        playerHungerBar.MaxHunger = (int)maxHunger;
+
+        //setting the intital values of the win loss conditons
+        playerWinLoss.DaysUntilFound = daysUntilFound;
+        playerWinLoss.DaysUntilRescued = daysUntilRescued;
     }
 
     // Update is called once per frame
@@ -50,22 +63,6 @@ public class PlayerStats : MonoBehaviour
         //normal updating of the health values
         //we dont have to do this every update but it will keep us from forgetting to do it
         UpDateStatValues();
-    }
-
-    /// <summary>
-    /// updates the GUI bars values in their respective scripts
-    /// </summary>
-    private void UpDateStatValues()
-    {
-        //accessing the players stat bars
-        healthBar playerHealthBar = GetComponent<healthBar>();
-        hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
-        hungerBar playerHungerBar = GetComponent<hungerBar>();
-
-        //updating the bars for the stats
-        playerHealthBar.SetCurrentValue((int)health);
-        playerHydrationBar.SetCurrentValue((int)hydration);
-        playerHungerBar.SetCurrentValue((int)hunger);
     }
 
     /// <summary>
@@ -90,6 +87,22 @@ public class PlayerStats : MonoBehaviour
 
         //making sure we dont go to low
         statBoundsChecking();
+    }
+
+    /// <summary>
+    /// updates the GUI bars values in their respective scripts
+    /// </summary>
+    private void UpDateStatValues()
+    {
+        //accessing the players stat bars
+        healthBar playerHealthBar = GetComponent<healthBar>();
+        hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
+        hungerBar playerHungerBar = GetComponent<hungerBar>();
+
+        //updating the bars for the stats
+        playerHealthBar.CurrentHealth = (int)health;
+        playerHydrationBar.CurrentHydration = (int)hydration;
+        playerHungerBar.CurrentHunger = (int)hunger;
     }
 
     /// <summary>
@@ -130,6 +143,8 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    #region Adjustment for stat values
+
     /// <summary>
     /// lets you modify the value of hydration by sending in how much you want to change it by
     /// </summary>
@@ -154,7 +169,7 @@ public class PlayerStats : MonoBehaviour
     /// The amount you send in will be added to the value of hunger
     /// </remarks>
     /// 
-    /// <param name="amount"></param>
+    /// <param name="amount">the amount to adjust by</param>
     public void adjustHunger(float amount)
     {
         hunger += amount;
@@ -165,10 +180,10 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     ///<remarks>
     /// If you pass in a positive number it will not change the health
-    /// The amount you send in will be added to the value of hunger
+    /// The amount you send in will be added to the value of health
     ///</remarks>
     /// 
-    /// <param name="amount"></param>
+    /// <param name="amount">the amount to adjust by</param>
     public void adjustHealth(float amount)
     {
         if (amount <= 0)
@@ -176,4 +191,36 @@ public class PlayerStats : MonoBehaviour
             health += amount;
         }
     }
+
+    /// <summary>
+    /// lets you modify the value of daysUntilFound by sending in how much you want to change it by
+    /// </summary>
+    /// <remarks>
+    /// If you would like to increment the value send in a positive value
+    /// If you would like to decrement thevalue send in a negative value
+    /// The amount you send in will be added to the value of daysUntilFound
+    /// </remarks>
+    /// 
+    /// <param name="amount">the amount to adjust by</param>
+    public void adjustDaysUntilFound(int amount)
+    {
+        daysUntilFound += amount;
+    }
+
+    /// <summary>
+    /// lets you modify the value of daysUntilRescued by sending in how much you want to change it by
+    /// </summary>
+    /// <remarks>
+    /// If you would like to increment the value send in a positive value
+    /// If you would like to decrement thevalue send in a negative value
+    /// The amount you send in will be added to the value of daysUntilRescued
+    /// </remarks>
+    /// 
+    /// <param name="amount">the amount to adjust by</param>
+    public void adjustDaysUntilRescued(int amount)
+    {
+        daysUntilRescued += amount;
+    }
+   
+    #endregion
 }
