@@ -56,10 +56,6 @@ public class winLoss : MonoBehaviour
     public int positionLeftFound = 10;
     public int barHeight = 20;
 
-    //this will be set by the code
-    private float valueBarLength;
-    private float screenSize;
-
     //rendering the text on screen
     void OnGUI()
     {

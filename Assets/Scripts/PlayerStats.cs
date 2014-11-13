@@ -20,10 +20,8 @@ public class PlayerStats : MonoBehaviour
     private float maxHunger = 100;
     private float maxHydration = 100;
 
-    //the loss rate of the stats
-    public float healthLossRate = 0;
-    public float hungerLossRate = 0;
-    public float hydrationLossRate = 0;
+    /// <summary> the game values for functions </summary>
+    public values gameValues;
 
     // Use this for initialization
     void Start()
@@ -52,6 +50,9 @@ public class PlayerStats : MonoBehaviour
         //setting the intital values of the win loss conditons
         playerWinLoss.DaysUntilFound = daysUntilFound;
         playerWinLoss.DaysUntilRescued = daysUntilRescued;
+
+        if (gameValues == null)
+            print("please add the script that has all the values for the game\nsuch as the health/food loss rates");
     }
 
     // Update is called once per frame
@@ -63,6 +64,8 @@ public class PlayerStats : MonoBehaviour
         //normal updating of the health values
         //we dont have to do this every update but it will keep us from forgetting to do it
         UpDateStatValues();
+
+        //TODO update the win loss conditions
     }
 
     /// <summary>
@@ -70,18 +73,18 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     private void PasiveStatLoss()
     {
-        hydration -= hydrationLossRate * Time.deltaTime;
-        hunger -= hungerLossRate * Time.deltaTime;
+        hydration -= gameValues.hydrationLossRate * Time.deltaTime;
+        hunger -= gameValues.hungerLossRate * Time.deltaTime;
 
         //if just one of the other stats is out we decremnt health by a small amount
         if ((hydration <= 0) || (hunger <= 0))
         {
-            health -= healthLossRate * Time.deltaTime;
+            health -= gameValues.healthLossRate * Time.deltaTime;
 
             //if both are out we decrment again
             if ((hydration <= 0) && (hunger <= 0))
             {
-                health -= healthLossRate * Time.deltaTime;
+                health -= gameValues.healthLossRate * Time.deltaTime;
             }
         }
 
@@ -221,6 +224,6 @@ public class PlayerStats : MonoBehaviour
     {
         daysUntilRescued += amount;
     }
-   
+
     #endregion
 }
