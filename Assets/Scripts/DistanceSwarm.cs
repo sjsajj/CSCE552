@@ -1,35 +1,38 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
+/// <summary> a script that will make the GameObject move towards another object </summary>
 public class DistanceSwarm : MonoBehaviour
 {
+    /// <summary> how quickly the GameObject will move towards the target </summary>
     public float moveSpeed = 5;
-    public GameObject swarmObj;
-    //public string swarmName = "Player";
 
-    // Use this for initialization
-    void Start()
+    /// <summary> the object that is being targeted </summary>
+    public GameObject swarmObj;
+
+    /// <summary> Use this for initialization </summary>
+    private void Start()
     {
-        //swarmObj = GameObject.Find(swarmName);
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary> Update is called once per frame </summary>
+    private void Update()
     {
-        float distance = Vector3.Distance(swarmObj.transform.position, transform.position);
+        float distance = Vector3.Distance(this.swarmObj.transform.position, transform.position);
         if (distance <= 10)
         {
-            Flock();
+            this.Flock();
         }
     }
 
-    void Flock()
+    /// <summary> moves the GameObject towards the target object </summary>
+    private void Flock()
     {
-        transform.LookAt(swarmObj.transform);
+        transform.LookAt(this.swarmObj.transform);
         Vector3 tempVect = transform.eulerAngles;
         tempVect.x = 0;
         tempVect.z = 0;
         transform.eulerAngles = tempVect;
-        transform.Translate(moveSpeed * transform.forward * Time.deltaTime, Space.World);
+        transform.Translate(this.moveSpeed * transform.forward * Time.deltaTime, Space.World);
     }
 }

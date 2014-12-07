@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-/// <summary>
-/// this object hold the values used for most of the functions in the game
-/// </summary>
+/// <summary> this object hold the values used for most of the functions in the game </summary>
 public class values : MonoBehaviour
 {
     /// <summary> how much hunger gets restored </summary>
