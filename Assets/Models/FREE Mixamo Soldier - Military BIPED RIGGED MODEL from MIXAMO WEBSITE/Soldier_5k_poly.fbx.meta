@@ -93,6 +93,7 @@ ModelImporter:
     4300002: Plane
     7400000: mixamo.com
     9500000: //RootNode
+    11100000: //RootNode
     13700000: soldier_Military_Male_Lod_0
   materials:
     importMaterials: 1
@@ -109,7 +110,117 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: mixamo.com
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 150
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Plane
+        weight: 0
+      - path: soldier:Hips
+        weight: 1
+      - path: soldier:Hips/soldier:LeftUpLeg
+        weight: 1
+      - path: soldier:Hips/soldier:LeftUpLeg/soldier:LeftLeg
+        weight: 1
+      - path: soldier:Hips/soldier:LeftUpLeg/soldier:LeftLeg/soldier:LeftFoot
+        weight: 1
+      - path: soldier:Hips/soldier:LeftUpLeg/soldier:LeftLeg/soldier:LeftFoot/soldier:LeftToeBase
+        weight: 1
+      - path: soldier:Hips/soldier:LeftUpLeg/soldier:LeftLeg/soldier:LeftFoot/soldier:LeftToeBase/soldier:LeftFootToeBase_End
+        weight: 0
+      - path: soldier:Hips/soldier:RightUpLeg
+        weight: 1
+      - path: soldier:Hips/soldier:RightUpLeg/soldier:RightLeg
+        weight: 1
+      - path: soldier:Hips/soldier:RightUpLeg/soldier:RightLeg/soldier:RightFoot
+        weight: 1
+      - path: soldier:Hips/soldier:RightUpLeg/soldier:RightLeg/soldier:RightFoot/soldier:RightToeBase
+        weight: 1
+      - path: soldier:Hips/soldier:RightUpLeg/soldier:RightLeg/soldier:RightFoot/soldier:RightToeBase/soldier:RightFootToeBase_End
+        weight: 0
+      - path: soldier:Hips/soldier:Spine
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftHandIndex1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftHandIndex1/soldier:LeftHandIndex2
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftHandIndex1/soldier:LeftHandIndex2/soldier:LeftHandIndex3_End
+        weight: 0
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftInHandThumb
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftInHandThumb/soldier:LeftHandThumb1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:LeftShoulder/soldier:LeftArm/soldier:LeftForeArm/soldier:LeftHand/soldier:LeftInHandThumb/soldier:LeftHandThumb1/soldier:LeftHandThumb2_End
+        weight: 0
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:Neck
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:Neck/soldier:Neck1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:Neck/soldier:Neck1/soldier:Head
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:Neck/soldier:Neck1/soldier:Head/soldier:HeadTop_End
+        weight: 0
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:Neck/soldier:Neck1/soldier:Head/soldier:HeadTop_End/MixamoSoldier5k_TurboSquid_001_2010
+        weight: 0
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightHandIndex1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightHandIndex1/soldier:RightHandIndex2
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightHandIndex1/soldier:RightHandIndex2/soldier:RightHandIndex3_End
+        weight: 0
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightInHandThumb
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightInHandThumb/soldier:RightHandThumb1
+        weight: 1
+      - path: soldier:Hips/soldier:Spine/soldier:Spine1/soldier:Spine2/soldier:RightShoulder/soldier:RightArm/soldier:RightForeArm/soldier:RightHand/soldier:RightInHandThumb/soldier:RightHandThumb1/soldier:RightHandThumb2_End
+        weight: 0
+      - path: soldier_Military_Male_Lod_0
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -145,6 +256,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   additionalBone: 0
   userData: 

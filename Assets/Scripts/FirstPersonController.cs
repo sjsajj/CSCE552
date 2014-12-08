@@ -22,6 +22,13 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> used to make sure the player can not move the Camera that a human head could not </summary>
     private float verticalRotation = 0;
 
+	/// <summary> used to control animations</summary>
+	public enum animationStates : int {isIdle=0, isWalking=1, inRunning=2, isJumping=3};
+
+	/// <summary> used to control animations</summary>
+	public animationStates animationState = animationStates.isIdle;
+	
+
     /// <summary> Use this for initialization </summary>
     private void Start()
     {
@@ -54,6 +61,11 @@ public class FirstPersonController : MonoBehaviour
     {
         float forwardSpeed = Input.GetAxis("Vertical") * this.movementSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * this.movementSpeed;
+
+        if (forwardSpeed != 0 || sideSpeed != 0)
+            animationState = animationStates.isWalking;
+        else animationState = animationStates.isIdle;
+
         Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
 
         speed = transform.rotation * speed;
