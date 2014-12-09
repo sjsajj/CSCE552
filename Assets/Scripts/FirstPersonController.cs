@@ -31,15 +31,30 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> used to make sure the player can not move the Camera that a human head could not </summary>
     private float verticalRotation = 0;
 
-	/// <summary> used to control animations</summary>
-	public enum animationStates : int {isIdle=0, isWalking=1, isRunning=2, isJumping=3, isAttacking=4};
+    /// <summary> used to control animations </summary>
+    public enum animationStates : int
+    {
+        /// <summary> the idle state </summary>
+        isIdle = 0,
 
-	/// <summary> used to control animations</summary>
-	public animationStates animationState = animationStates.isIdle;
+        /// <summary> the walking state </summary>
+        isWalking = 1,
+
+        /// <summary> the running state </summary>
+        isRunning = 2,
+
+        /// <summary> the jumping state </summary>
+        isJumping = 3,
+
+        /// <summary> the attacking state </summary>
+        isAttacking = 4
+    };
+
+    /// <summary> used to control animations </summary>
+    public animationStates animationState = animationStates.isIdle;
 
     /// <summary> local animator object </summary>
-    Animator animator;
-	
+    private Animator animator;
 
     /// <summary> Use this for initialization </summary>
     private void Start()
@@ -85,15 +100,17 @@ public class FirstPersonController : MonoBehaviour
             currentSpeed = this.movementSpeed;
         }
 
-        if (Input.GetMouseButton(0)) animator.SetInteger("animationState", (int)animationStates.isAttacking);
-         
+        if (Input.GetMouseButton(0))
+            animator.SetInteger("animationState", (int)animationStates.isAttacking);
+
         float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
 
         if (forwardSpeed != 0 || sideSpeed != 0 && !Input.GetMouseButton(0))
-          //animationState = animationStates.isWalking;
+            //animationState = animationStates.isWalking;
             animator.SetInteger("animationState", (int)animationStates.isWalking);
-        else if (!Input.GetMouseButton(0)) animator.SetInteger("animationState", (int)animationStates.isIdle);
+        else if (!Input.GetMouseButton(0))
+            animator.SetInteger("animationState", (int)animationStates.isIdle);
 
         Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
 
@@ -158,5 +175,4 @@ public class FirstPersonController : MonoBehaviour
             this.playerStatsScript.adjustHealth(this.gameValues.healthLostBearAttack * Time.deltaTime);
         }
     }
-
 }

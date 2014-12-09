@@ -1,31 +1,28 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public class SimpleManager : MonoBehaviour {
+public class SimpleManager : MonoBehaviour
+{
+    public string playerTag = "Player";
+    public int mainMenuIndex = 0;
+    public int winMenu = 2;
+    public int loseMenu = 3;
 
-	public string playerTag = "Player";
-	public int mainMenuIndex = 0;
-	public int winMenu = 2;
-	public int loseMenu = 3;
-	
+    // Use this for initialization 
+    private void Start()
+    {
+    }
 
-	// Use this for initialization
-	void Start () 
-	{
+    // Update is called once per frame 
+    private void Update()
+    {
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	
-	}
-
-	void GODied(string goTag)
-	{
-		if(goTag == playerTag)
-		{
-			Application.LoadLevel (loseMenu);
-		}
-	}
+    private void GODied(string goTag)
+    {
+        if (goTag == playerTag)
+        {
+            Application.LoadLevel(loseMenu);
+        }
+    }
 }

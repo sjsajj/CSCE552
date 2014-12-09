@@ -1,65 +1,70 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-//displays a horizontal bar with a max and min value which will appear in text on the bar
+// displays a horizontal bar with a max and min value which will appear in text on the bar 
 public class GUIBarHorizontal : MonoBehaviour
 {
-    //values for the bar
+    // values for the bar 
     public int maxValue = 110;
+
     public int currentValue = 100;
 
-    //use this to control how much space the value read out has
+    // use this to control how much space the value read out has 
     public int textSize = 50;
 
-    //positioning the bar
+    // positioning the bar 
     public int positionTop = 10;
+
     public int positionLeft = 10;
     public int barHeight = 20;
     public float barWidth = 2;
 
-    //this will be set by the code
+    // this will be set by the code 
     private float valueBarLength;
+
     private float screenSize;
 
-    //texturing the bar
+    // texturing the bar 
     public Texture2D backgroundImage;
+
     public Texture2D foregroundImage;
 
-    // Use this for initialization
-    void Start()
+    /// <summary> Use this for initialization </summary>
+    private void Start()
     {
         valueBarLength = Screen.width / barWidth;
         screenSize = Screen.width / barWidth;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary> Update is called once per frame </summary>
+    private void Update()
     {
         AdjustCurrentValue(0);
     }
 
-    //draws the bar on screen
-    void OnGUI()
+    /// <summary> draws the bar on screen </summary>
+    private void OnGUI()
     {
-        //this is what controles the size of the bar in the horazontal direction
+        // this is what controles the size of the bar in the horazontal direction 
         valueBarLength = (screenSize) * (currentValue / (float)maxValue);
 
-        //the background
+        // the background 
         GUI.DrawTexture(new Rect(positionLeft, Screen.height - positionTop, screenSize, barHeight), backgroundImage);
 
-        //the actual health bar
+        // the actual health bar 
         GUI.DrawTexture(new Rect(positionLeft, Screen.height - positionTop, valueBarLength, barHeight), foregroundImage);
 
-        //the text that displays the current health over the max helth
+        // the text that displays the current health over the max helth 
         GUI.Label(new Rect(positionLeft, Screen.height - positionTop, textSize, barHeight), currentValue + "/" + maxValue);
     }
 
-    //takes care of updating the bar
+    /// <summary> takes care of updating the bar </summary>
+    /// <param name="adjustment"> the amount to adjust the value </param>
     private void AdjustCurrentValue(int adjustment)
     {
         currentValue += adjustment;
 
-        //bounds checking
+        // bounds checking 
         if (currentValue <= 0)
         {
             currentValue = 0;
@@ -74,6 +79,5 @@ public class GUIBarHorizontal : MonoBehaviour
         {
             maxValue = 1;
         }
-
     }
 }

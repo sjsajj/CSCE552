@@ -1,35 +1,61 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
-public enum AIStates { Stop, Wander, Swarm };
+public enum AIStates
+{
+    /// <summary> tells the AI to stop </summary>
+    Stop,
+
+    /// <summary> tells the AI to wander </summary>
+    Wander,
+
+    /// <summary> tells the AI to swarm </summary>
+    Swarm
+}
 
 public class ProximitySwarm : MonoBehaviour
 {
-    AIStates currState;
-    Swarm swarmScript;
-    //Animation childAnimation;
+    private AIStates currState;
+    private Swarm swarmScript;
+
+    // Animation childAnimation; 
     public float changeDistance = 30;
     public float attackDistance = 5;
     public float wanderspeed = 3;
-    float currMoveSpeed;
+    private float currMoveSpeed;
 
     public float minActionTime = 2;
     public float maxActionTime = 7;
-    float currTime;
+    private float currTime;
     public GameObject player;
 
-    /// <summary> used to control animations</summary>
-    public enum animationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3, isAttacking = 4};
+    /// <summary> used to control animations </summary>
+    public enum animationStates : int
+    {
+        /// <summary> the idle state </summary>
+        isIdle = 0,
 
-    /// <summary> used to control animations</summary>
-    //public animationStates animationState = animationStates.isIdle;
+        /// <summary> the waking state </summary>
+        isWalking = 1,
+
+        /// <summary> the running state </summary>
+        isRunning = 2,
+
+        /// <summary> the jumping state </summary>
+        isJumping = 3,
+
+        /// <summary> the attacking state </summary>
+        isAttacking = 4
+    }
+
+    /// <summary> used to control animations </summary>
+    // public AnimationStates animationState = AnimationStates.isIdle; 
 
     /// <summary> local animator object </summary>
-    Animator animator;
+    private Animator animator;
 
-    
-    // Use this for initialization
-    void Start()
+    // Use this for initialization 
+    private void Start()
     {
         animator = GetComponent<Animator>();
 
@@ -38,34 +64,34 @@ public class ProximitySwarm : MonoBehaviour
         {
             gameObject.AddComponent<Swarm>();
         }
+
         swarmScript.enabled = false;
-        //childAnimation = GetComponentInChildren<Animation>();
-        //player = GameObject.Find("Player");
+        // childAnimation = GetComponentInChildren<Animation>(); player = GameObject.Find("Player"); 
         currTime = Random.Range(minActionTime, maxActionTime);
-        //pick random action
+
+        // pick random action 
         PickRandomAction();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Update is called once per frame 
+    private void Update()
     {
         float distanceToPlayer = (transform.position - player.transform.position).magnitude;
         if (distanceToPlayer <= changeDistance && distanceToPlayer > attackDistance)
         {
-            //Swarm
+            // Swarm 
             animator.SetInteger("animationState", (int)animationStates.isRunning);
             Swarm();
         }
         else if (distanceToPlayer <= changeDistance && distanceToPlayer <= attackDistance)
         {
-            //Swarm
+            // Swarm 
             animator.SetInteger("animationState", (int)animationStates.isAttacking);
             Swarm();
         }
         else if (currState == AIStates.Swarm)
         {
-            //Pick Random Action
-            //animator.SetInteger("animationState", PickRandomAction());
+            // Pick Random Action animator.SetInteger("animationState", PickRandomAction()); 
             PickRandomAction();
         }
         else
@@ -73,26 +99,24 @@ public class ProximitySwarm : MonoBehaviour
             currTime -= Time.deltaTime;
             if (currTime <= 0)
             {
-                //pick random action
+                // pick random action 
                 PickRandomAction();
                 currTime = Random.Range(minActionTime, maxActionTime);
             }
         }
+
         transform.Translate(transform.forward * currMoveSpeed * Time.deltaTime, Space.World);
     }
 
-    void Swarm()
+    private void Swarm()
     {
         currState = AIStates.Swarm;
         swarmScript.enabled = true;
         currMoveSpeed = 0;
-        //if(childAnimation.IsPlaying("run") == false)
-        //{
-        //	childAnimation.CrossFade("run");
-        //}
+        // if(childAnimation.IsPlaying("run") == false) { childAnimation.CrossFade("run"); } 
     }
 
-    int PickRandomAction()
+    private int PickRandomAction()
     {
         int returnval = 0;
 
@@ -100,17 +124,20 @@ public class ProximitySwarm : MonoBehaviour
         {
             swarmScript.enabled = false;
         }
+
         int randNum = Random.Range(0, 2);
         if (randNum == 0)
         {
-            //stop
+            // stop 
             animator.SetInteger("animationState", (int)animationStates.isIdle);
             Stop();
-            returnval = 0;  //idle
+
+            // idle 
+            returnval = 0;
         }
         else
         {
-            //wander
+            // wander 
             animator.SetInteger("animationState", (int)animationStates.isWalking);
             Wander();
             returnval = 1;
@@ -119,17 +146,14 @@ public class ProximitySwarm : MonoBehaviour
         return returnval;
     }
 
-    void Stop()
+    private void Stop()
     {
-        //if(childAnimation.IsPlaying("idle") == false)
-        //{
-        //	childAnimation.CrossFade("idle");
-        //}
+        // if(childAnimation.IsPlaying("idle") == false) { childAnimation.CrossFade("idle"); } 
         currMoveSpeed = 0;
         currState = AIStates.Stop;
     }
 
-    void Wander()
+    private void Wander()
     {
         Quaternion newRot = Random.rotation;
         newRot.x = 0;
@@ -137,17 +161,6 @@ public class ProximitySwarm : MonoBehaviour
         transform.rotation = newRot;
         currMoveSpeed = wanderspeed;
         currState = AIStates.Wander;
-        //if(childAnimation.IsPlaying("walk") == false)
-        //{
-        //	childAnimation.CrossFade("walk");
-        //}
+        // if(childAnimation.IsPlaying("walk") == false) { childAnimation.CrossFade("walk"); } 
     }
-
 }
-
-
-
-
-
-
-

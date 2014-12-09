@@ -4,15 +4,15 @@ using System.Collections;
 public class Swarm : MonoBehaviour
 {
     public float moveSpeed = 5;
-    //public float attackDistance = 5;
+    // public float attackDistance = 5;
     public GameObject swarmObj;
 
 
     /// <summary> used to control animations</summary>
-   // public enum animationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3, isAttacking = 4 };
+   // public enum AnimationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3, isAttacking = 4 };
 
     /// <summary> used to control animations</summary>
-    //public animationStates animationState = animationStates.isIdle;
+    // public AnimationStates animationState = AnimationStates.isIdle;
 
     /// <summary> local animator object </summary>
    // Animator animator;
@@ -28,10 +28,10 @@ public class Swarm : MonoBehaviour
     {
         Flock();
         
-        //float distanceToPlayer = (transform.position - swarmObj.transform.position).magnitude;
-        //if (distanceToPlayer <= attackDistance) animator.SetInteger("animatorState", (int)animationStates.isAttacking);
-        //else animator.SetInteger("animationState", (int)animationStates.isRunning);
-        //animator.SetInteger("animatorState", (int)animationStates.isRunning);
+        // float distanceToPlayer = (transform.position - swarmObj.transform.position).magnitude;
+        // if (distanceToPlayer <= attackDistance) animator.SetInteger("animatorState", (int)AnimationStates.isAttacking);
+        // else animator.SetInteger("animationState", (int)AnimationStates.isRunning);
+        // animator.SetInteger("animatorState", (int)AnimationStates.isRunning);
     }
 
     void Flock()

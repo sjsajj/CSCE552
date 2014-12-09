@@ -1,25 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class winLoss : MonoBehaviour
 {
-    //values to display
+    // values to display 
     public string foundText = "days until found ";
     public string rescuedText = "days until rescued ";
     private int daysUntilFound = 10;
     private int daysUntilRescued = 10;
 
-    //this is a C# propertie which means it has assessor and mutators built in so you dont need to explicitly call them
+    /// <summary> Gets or sets how many days until the player loses </summary>
     public int DaysUntilFound
     {
-        get { return daysUntilFound; }
+        get
+        {
+            return daysUntilFound;
+        }
         set
         {
             if (value < 0)
             {
                 daysUntilFound = 0;
             }
-
             else
             {
                 daysUntilFound = value;
@@ -27,39 +29,41 @@ public class winLoss : MonoBehaviour
         }
     }
 
-    //this is a C# propertie which means it has assessor and mutators built in so you dont need to explicitly call them
+    /// <summary> Gets or sets how many days until the player wins </summary>
     public int DaysUntilRescued
     {
-        get { return daysUntilRescued; }
+        get
+        {
+            return daysUntilRescued;
+        }
         set
         {
             if (value < 0)
             {
                 daysUntilRescued = 0;
             }
-
             else
             {
                 daysUntilRescued = value;
             }
-
         }
     }
 
-    //use this to control how much space the value read out has
+    // use this to control how much space the value read out has 
     public int textSize = 250;
 
-    //positioning the bar
+    // positioning the bar 
     public int positionTopRescued = 10;
+
     public int positionTopFound = 10;
     public int positionLeftRescued = 140;
     public int positionLeftFound = 10;
     public int barHeight = 20;
 
-    //rendering the text on screen
-    void OnGUI()
+    // rendering the text on screen 
+    private void OnGUI()
     {
-        //the text that displays the current health over the max helth
+        // the text that displays the current health over the max helth 
         GUI.Label(new Rect(positionLeftFound, positionTopFound, textSize, barHeight), foundText + daysUntilFound);
         GUI.Label(new Rect(Screen.width - positionLeftRescued, positionTopRescued, textSize, barHeight), rescuedText + daysUntilRescued);
     }
