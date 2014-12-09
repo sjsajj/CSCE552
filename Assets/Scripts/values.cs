@@ -14,11 +14,11 @@ public class values : MonoBehaviour
     public float healthLostBearAttack = -5f;
 
     /// <summary> the loss rate of health </summary>
-    public float healthLossRate = 0;
+    public float healthLossRate = -2;
 
     /// <summary> the loss rate of hunger </summary>
-    public float hungerLossRate = 0;
+    public float hungerLossRate = -2;
 
     /// <summary> the loss rate of hydration </summary>
-    public float hydrationLossRate = 0;
+    public float hydrationLossRate = -2;
 }
