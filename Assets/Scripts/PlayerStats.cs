@@ -23,9 +23,14 @@ public class PlayerStats : MonoBehaviour
     private float maxHunger = 100;
     private float maxHydration = 100;
 
+	GameObject sceneManager;
+
     // Use this for initialization 
     private void Start()
     {
+
+		sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
+
         //accessing the other scripts to set the initial values of the GUI elements
         healthBar playerHealthBar = GetComponent<healthBar>();
         hungerBar playerHungerBar = GetComponent<hungerBar>();
@@ -104,6 +109,7 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+			sceneManager.SendMessage("GODied", tag);
         }
 
         if (hunger <= 0)
