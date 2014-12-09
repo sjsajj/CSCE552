@@ -13,6 +13,9 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> how sensitive the mouse is </summary>
     public float mouseSens = 3.0f;
 
+    /// <summary> force of jump </summary>
+    public float jumpForce = 500;
+
     /// <summary> the game values for functions </summary>
     public values gameValues;
 
@@ -23,10 +26,13 @@ public class FirstPersonController : MonoBehaviour
     private float verticalRotation = 0;
 
 	/// <summary> used to control animations</summary>
-	public enum animationStates : int {isIdle=0, isWalking=1, inRunning=2, isJumping=3};
+	public enum animationStates : int {isIdle=0, isWalking=1, isRunning=2, isJumping=3};
 
 	/// <summary> used to control animations</summary>
 	public animationStates animationState = animationStates.isIdle;
+
+    /// <summary> local animator object </summary>
+    Animator animator;
 	
 
     /// <summary> Use this for initialization </summary>
@@ -44,6 +50,8 @@ public class FirstPersonController : MonoBehaviour
         {
             print("please add the script that has all the values for the game\nsuch as the health/food loss rates");
         }
+
+        animator = GetComponent<Animator>();
     }
 
     /// <summary> updates the players movement and the Camera position </summary>
@@ -63,14 +71,21 @@ public class FirstPersonController : MonoBehaviour
         float sideSpeed = Input.GetAxis("Horizontal") * this.movementSpeed;
 
         if (forwardSpeed != 0 || sideSpeed != 0)
-            animationState = animationStates.isWalking;
-        else animationState = animationStates.isIdle;
+          //animationState = animationStates.isWalking;
+            animator.SetInteger("animationState", (int)animationStates.isWalking);
+        else animator.SetInteger("animationState", (int)animationStates.isIdle);
 
         Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
 
         speed = transform.rotation * speed;
 
         CharacterController cc = GetComponent<CharacterController>();
+
+        if (Input.GetKeyDown(KeyCode.Space) && cc.isGrounded)
+        {
+            animator.SetInteger("animationState", (int)animationStates.isJumping);
+            rigidbody.AddForce(Vector3.up * jumpForce);
+        }
 
         cc.SimpleMove(speed);
     }
@@ -122,4 +137,5 @@ public class FirstPersonController : MonoBehaviour
             this.playerStatsScript.adjustHealth(this.gameValues.healthLostBearAttack * Time.deltaTime);
         }
     }
+
 }

@@ -17,10 +17,21 @@ public class ProximitySwarm : MonoBehaviour
     float currTime;
     public GameObject player;
 
+    /// <summary> used to control animations</summary>
+    public enum animationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3 };
 
+    /// <summary> used to control animations</summary>
+    //public animationStates animationState = animationStates.isIdle;
+
+    /// <summary> local animator object </summary>
+    Animator animator;
+
+    
     // Use this for initialization
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         swarmScript = GetComponent<Swarm>();
         if (swarmScript == null)
         {
@@ -41,12 +52,14 @@ public class ProximitySwarm : MonoBehaviour
         if (distanceToPlayer <= changeDistance)
         {
             //Swarm
+            animator.SetInteger("animationState", (int)animationStates.isRunning);
             Swarm();
         }
         else if (currState == AIStates.Swarm)
         {
             //Pick Random Action
-            PickRandomAction();
+            animator.SetInteger("animationState", PickRandomAction());
+            //PickRandomAction();
         }
         else
         {
@@ -72,8 +85,10 @@ public class ProximitySwarm : MonoBehaviour
         //}
     }
 
-    void PickRandomAction()
+    int PickRandomAction()
     {
+        int returnval = 0;
+
         if (swarmScript.enabled == true)
         {
             swarmScript.enabled = false;
@@ -83,12 +98,16 @@ public class ProximitySwarm : MonoBehaviour
         {
             //stop
             Stop();
+            returnval = 0;  //idle
         }
         else
         {
             //wander
             Wander();
+            returnval = 1;
         }
+
+        return returnval;
     }
 
     void Stop()
