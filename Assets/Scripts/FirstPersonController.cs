@@ -32,7 +32,7 @@ public class FirstPersonController : MonoBehaviour
     private float verticalRotation = 0;
 
 	/// <summary> used to control animations</summary>
-	public enum animationStates : int {isIdle=0, isWalking=1, isRunning=2, isJumping=3};
+	public enum animationStates : int {isIdle=0, isWalking=1, isRunning=2, isJumping=3, isAttacking=4};
 
 	/// <summary> used to control animations</summary>
 	public animationStates animationState = animationStates.isIdle;

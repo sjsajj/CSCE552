@@ -9,6 +9,7 @@ public class ProximitySwarm : MonoBehaviour
     Swarm swarmScript;
     //Animation childAnimation;
     public float changeDistance = 30;
+    public float attackDistance = 5;
     public float wanderspeed = 3;
     float currMoveSpeed;
 
@@ -18,7 +19,7 @@ public class ProximitySwarm : MonoBehaviour
     public GameObject player;
 
     /// <summary> used to control animations</summary>
-    public enum animationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3 };
+    public enum animationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3, isAttacking = 4};
 
     /// <summary> used to control animations</summary>
     //public animationStates animationState = animationStates.isIdle;
@@ -49,10 +50,16 @@ public class ProximitySwarm : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = (transform.position - player.transform.position).magnitude;
-        if (distanceToPlayer <= changeDistance)
+        if (distanceToPlayer <= changeDistance && distanceToPlayer > attackDistance)
         {
             //Swarm
             animator.SetInteger("animationState", (int)animationStates.isRunning);
+            Swarm();
+        }
+        else if (distanceToPlayer <= changeDistance && distanceToPlayer <= attackDistance)
+        {
+            //Swarm
+            animator.SetInteger("animationState", (int)animationStates.isAttacking);
             Swarm();
         }
         else if (currState == AIStates.Swarm)
