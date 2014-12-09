@@ -7,29 +7,39 @@ using UnityEngine;
 /// </summary>
 public class PlayerStats : MonoBehaviour
 {
-    public int daysUntilFound = 10;
+    /// <summary> how many days until the player wins the game </summary>
     public int daysUntilRescued = 10;
+
+    /// <summary> how many days until the player looses the game </summary>
+    public int daysUntilFound = 10;
 
     /// <summary> the game values for functions </summary>
     public values gameValues;
 
-    //the players stats
+    /// <summary> the players current health </summary>
     public float health = 100;
+
+    /// <summary> the players current hunger </summary>
     public float hunger = 100;
+
+    /// <summary> the plays current hydration </summary>
     public float hydration = 100;
 
-    //for bounds checking
+    /// <summary> the maximum amount of health the player can have </summary>
     private float maxHealth = 100;
+
+    /// <summary> the maximum amount of hunger the player can have </summary>
     private float maxHunger = 100;
+
+    /// <summary> the maximum amount of hydration the player can have </summary>
     private float maxHydration = 100;
 
-	GameObject sceneManager;
+    private GameObject sceneManager;
 
     // Use this for initialization 
     private void Start()
     {
-
-		sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
+        sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
 
         //accessing the other scripts to set the initial values of the GUI elements
         healthBar playerHealthBar = GetComponent<healthBar>();
@@ -78,8 +88,20 @@ public class PlayerStats : MonoBehaviour
     /// <summary> deducts a defined amount from hunger and hydration and health if either hunger or hydration is 0 </summary>
     private void PasiveStatLoss()
     {
-        hydration -= gameValues.hydrationLossRate * Time.deltaTime;
-        hunger -= gameValues.hungerLossRate * Time.deltaTime;
+        //how much sprinting will affect the loss rate of hunger and hydration
+        if (Input.GetButton("Sprint"))
+        {
+            //print("increaced loss rate");
+            hunger -= gameValues.hungerLossRate * Time.deltaTime * gameValues.sprintLossRateModifier;
+            hydration -= gameValues.hydrationLossRate * Time.deltaTime * gameValues.sprintLossRateModifier;
+        }
+
+        //the normal loss rate of hunger nad hydration if not sprinting
+        else
+        {
+            hunger -= gameValues.hungerLossRate * Time.deltaTime;
+            hydration -= gameValues.hydrationLossRate * Time.deltaTime;
+        }
 
         //if just one of the other stats is out we decremnt health by a small amount
         if ((hydration <= 0) || (hunger <= 0))
@@ -109,7 +131,7 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
-			sceneManager.SendMessage("GODied", tag);
+            sceneManager.SendMessage("GODied", tag);
         }
 
         if (hunger <= 0)
@@ -147,6 +169,7 @@ public class PlayerStats : MonoBehaviour
         playerHydrationBar.CurrentHydration = (int)hydration;
         playerHungerBar.CurrentHunger = (int)hunger;
     }
+
     #endregion Stat updates
 
     #region Adjustment for stat values
@@ -211,5 +234,6 @@ public class PlayerStats : MonoBehaviour
     {
         hydration += amount;
     }
+
     #endregion Adjustment for stat values
 }

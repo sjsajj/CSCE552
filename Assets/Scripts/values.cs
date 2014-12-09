@@ -21,4 +21,7 @@ public class values : MonoBehaviour
 
     /// <summary> the loss rate of hydration </summary>
     public float hydrationLossRate = -2;
+
+    /// <summary> how many times the hungerLossRate will be increaced if the player is sprinting </summary>
+    public float sprintLossRateModifier = 4;
 }

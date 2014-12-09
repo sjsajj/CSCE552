@@ -73,6 +73,7 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> updates the position of the player based on the keyboard input </summary>
     private void UpdateMovement()
     {
+        //sprinting if shift is pressed
         if (Input.GetKeyDown(KeyCode.LeftShift).Equals(true))
         {
             //print("Sprint");
@@ -98,6 +99,7 @@ public class FirstPersonController : MonoBehaviour
 
         CharacterController cc = GetComponent<CharacterController>();
 
+        //jump in space is pressed
         if (Input.GetKey(KeyCode.Space) && cc.isGrounded)
         {
             animator.SetInteger("animationState", (int)animationStates.isJumping);
