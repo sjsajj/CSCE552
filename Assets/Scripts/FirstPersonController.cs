@@ -10,6 +10,12 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> how quick the player will move </summary>
     public float movementSpeed = 6.0f;
 
+    /// <summary> how quick the player will move </summary>
+    public float runSpeed = 9.0f;
+
+    /// <summary> how quick the player will move </summary>
+    public float currentSpeed = 0.0f;
+
     /// <summary> how sensitive the mouse is </summary>
     public float mouseSens = 3.0f;
 
@@ -67,8 +73,19 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> updates the position of the player based on the keyboard input </summary>
     private void UpdateMovement()
     {
-        float forwardSpeed = Input.GetAxis("Vertical") * this.movementSpeed;
-        float sideSpeed = Input.GetAxis("Horizontal") * this.movementSpeed;
+        if (Input.GetKeyDown(KeyCode.LeftShift).Equals(true))
+        {
+            //print("Sprint");
+            currentSpeed = this.runSpeed;
+        }
+        else if (Input.GetKey(KeyCode.LeftShift).Equals(false))
+        {
+            //print("Walk");
+            currentSpeed = this.movementSpeed;
+        }
+         
+        float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
+        float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
 
         if (forwardSpeed != 0 || sideSpeed != 0)
           //animationState = animationStates.isWalking;
@@ -81,7 +98,7 @@ public class FirstPersonController : MonoBehaviour
 
         CharacterController cc = GetComponent<CharacterController>();
 
-        if (Input.GetKeyDown(KeyCode.Space) && cc.isGrounded)
+        if (Input.GetKey(KeyCode.Space) && cc.isGrounded)
         {
             animator.SetInteger("animationState", (int)animationStates.isJumping);
             rigidbody.AddForce(Vector3.up * jumpForce);

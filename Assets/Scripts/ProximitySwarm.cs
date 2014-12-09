@@ -8,7 +8,7 @@ public class ProximitySwarm : MonoBehaviour
     AIStates currState;
     Swarm swarmScript;
     //Animation childAnimation;
-    public float changeDistance = 20;
+    public float changeDistance = 30;
     public float wanderspeed = 3;
     float currMoveSpeed;
 
@@ -58,8 +58,8 @@ public class ProximitySwarm : MonoBehaviour
         else if (currState == AIStates.Swarm)
         {
             //Pick Random Action
-            animator.SetInteger("animationState", PickRandomAction());
-            //PickRandomAction();
+            //animator.SetInteger("animationState", PickRandomAction());
+            PickRandomAction();
         }
         else
         {
@@ -97,12 +97,14 @@ public class ProximitySwarm : MonoBehaviour
         if (randNum == 0)
         {
             //stop
+            animator.SetInteger("animationState", (int)animationStates.isIdle);
             Stop();
             returnval = 0;  //idle
         }
         else
         {
             //wander
+            animator.SetInteger("animationState", (int)animationStates.isWalking);
             Wander();
             returnval = 1;
         }
