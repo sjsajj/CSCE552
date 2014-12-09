@@ -84,14 +84,16 @@ public class FirstPersonController : MonoBehaviour
             //print("Walk");
             currentSpeed = this.movementSpeed;
         }
+
+        if (Input.GetMouseButton(0)) animator.SetInteger("animationState", (int)animationStates.isAttacking);
          
         float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
 
-        if (forwardSpeed != 0 || sideSpeed != 0)
+        if (forwardSpeed != 0 || sideSpeed != 0 && !Input.GetMouseButton(0))
           //animationState = animationStates.isWalking;
             animator.SetInteger("animationState", (int)animationStates.isWalking);
-        else animator.SetInteger("animationState", (int)animationStates.isIdle);
+        else if (!Input.GetMouseButton(0)) animator.SetInteger("animationState", (int)animationStates.isIdle);
 
         Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
 
