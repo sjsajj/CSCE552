@@ -25,4 +25,9 @@ public class SimpleManager : MonoBehaviour
             Application.LoadLevel(loseMenu);
         }
     }
+
+	private void GOWin()
+	{
+		Application.LoadLevel (winMenu);
+	}
 }

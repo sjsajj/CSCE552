@@ -35,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     private float maxHydration = 100;
 
     private GameObject sceneManager;
+	private WinLoss playerWinLoss;
 
     // Use this for initialization 
     private void Start()
@@ -45,7 +46,7 @@ public class PlayerStats : MonoBehaviour
         HealthBar playerHealthBar = GetComponent<HealthBar>();
         HungerBar playerHungerBar = GetComponent<HungerBar>();
         HydrationBar playerHydrationBar = GetComponent<HydrationBar>();
-        WinLoss playerWinLoss = GetComponent<WinLoss>();
+		playerWinLoss = GetComponent<WinLoss>();
 
         // setting the max values
         maxHealth = health;
@@ -80,6 +81,8 @@ public class PlayerStats : MonoBehaviour
         UpDateStatValues();
 
         // TODO update the win loss conditions 
+
+		playerWinLoss.DaysUntilFound = -1;
     }
 
     #region Stat updates
