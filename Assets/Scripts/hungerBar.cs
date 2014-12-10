@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // displays a horizontal bar with a max and min value which will appear in text on the bar 
-public class hungerBar : MonoBehaviour
+public class HungerBar : MonoBehaviour
 {
     // values for the bar 
     private int maxHunger = 100;

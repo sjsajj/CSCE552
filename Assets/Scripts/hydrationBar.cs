@@ -2,7 +2,7 @@
 using UnityEngine;
 
 // displays a horizontal bar with a max and min value which will appear in text on the bar 
-public class hydrationBar : MonoBehaviour
+public class HydrationBar : MonoBehaviour
 {
     // values for the bar
     private int maxHydration = 100;

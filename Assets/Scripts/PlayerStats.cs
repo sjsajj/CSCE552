@@ -42,9 +42,9 @@ public class PlayerStats : MonoBehaviour
         sceneManager = GameObject.FindGameObjectWithTag("SceneManager");
 
         // accessing the other scripts to set the initial values of the GUI elements 
-        healthBar playerHealthBar = GetComponent<healthBar>();
-        hungerBar playerHungerBar = GetComponent<hungerBar>();
-        hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
+        HealthBar playerHealthBar = GetComponent<HealthBar>();
+        HungerBar playerHungerBar = GetComponent<HungerBar>();
+        HydrationBar playerHydrationBar = GetComponent<HydrationBar>();
         WinLoss playerWinLoss = GetComponent<WinLoss>();
 
         // setting the max values
@@ -159,9 +159,9 @@ public class PlayerStats : MonoBehaviour
     private void UpDateStatValues()
     {
         // accessing the players stat bars 
-        healthBar playerHealthBar = GetComponent<healthBar>();
-        hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
-        hungerBar playerHungerBar = GetComponent<hungerBar>();
+        HealthBar playerHealthBar = GetComponent<HealthBar>();
+        HydrationBar playerHydrationBar = GetComponent<HydrationBar>();
+        HungerBar playerHungerBar = GetComponent<HungerBar>();
 
         // updating the bars for the stats 
         playerHealthBar.CurrentHealth = (int)health;
