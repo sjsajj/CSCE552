@@ -101,7 +101,7 @@ public class PlayerStats : MonoBehaviour
 
         if(playerWinLoss.DaysUntilRescued <=0)
         {
-            SendMessage("GOWin");
+            ////SendMessage("GOWin");
         }
     }
 
