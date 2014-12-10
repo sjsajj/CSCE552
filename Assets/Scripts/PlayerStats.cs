@@ -10,9 +10,6 @@ public class PlayerStats : MonoBehaviour
     /// <summary> how many days until the player wins the game </summary>
     public int daysUntilRescued = 10;
 
-    /// <summary> how many days until the player looses the game </summary>
-    public int daysUntilFound = 10;
-
     /// <summary> the game values for functions </summary>
     public Values gameValues;
 
@@ -43,8 +40,6 @@ public class PlayerStats : MonoBehaviour
     /// <summary> the variable that controls the GUI display for how many days until you win </summary>
     private WinLoss playerWinLoss;
 
-    
-
     // Use this for initialization 
     private void Start()
     {
@@ -74,7 +69,7 @@ public class PlayerStats : MonoBehaviour
         // setting the intital values of the win loss conditons 
         playerWinLoss.DaysUntilRescued = daysUntilRescued;
 
-        // decrements the days until the player wins the game every dayLength minutes
+        // decrements the days until the player wins the game every dayLength minutes 
         InvokeRepeating("DecrementDaysUntilRescued", 60 * dayLength, 60 * dayLength);
 
         if (gameValues == null)
@@ -89,7 +84,6 @@ public class PlayerStats : MonoBehaviour
 
         // normal updating of the health values we dont have to do this every update but it will keep us from forgetting to do it 
         UpDateStatValues();
-
     }
 
     /// <summary> subtracts 1 day from the days until rescued (the player wins the game) </summary>
@@ -98,7 +92,7 @@ public class PlayerStats : MonoBehaviour
         //decrementing the days until the player wins
         playerWinLoss.DaysUntilRescued -= 1;
 
-        if(playerWinLoss.DaysUntilRescued <=0)
+        if (playerWinLoss.DaysUntilRescued <= 0)
         {
             sceneManager.SendMessage("GOWin");
         }
@@ -186,17 +180,6 @@ public class PlayerStats : MonoBehaviour
         playerHealthBar.CurrentHealth = (int)health;
         playerHydrationBar.CurrentHydration = (int)hydration;
         playerHungerBar.CurrentHunger = (int)hunger;
-    }
-
-    /// <summary> lets you modify the value of daysUntilFound by sending in how much you want to change it by </summary>
-    /// <remarks>
-    /// If you would like to increment the value send in a positive value If you would like to decrement the value send in a negative value The amount
-    /// you send in will be added to the value of daysUntilFound
-    /// </remarks>
-    /// <param name="amount"> the amount to adjust by </param>
-    public void adjustDaysUntilFound(int amount)
-    {
-        daysUntilFound += amount;
     }
 
     /// <summary> lets you modify the value of daysUntilRescued by sending in how much you want to change it by </summary>

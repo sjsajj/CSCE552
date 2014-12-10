@@ -24,4 +24,7 @@ public class Values : MonoBehaviour
 
     /// <summary> how many times the hungerLossRate will be increased if the player is sprinting </summary>
     public float sprintLossRateModifier = 4;
+
+    /// <summary> how long before the food is unhidden in minutes </summary>
+    public float foodWaitTime = 5;
 }
