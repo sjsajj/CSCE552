@@ -152,7 +152,8 @@ public class FirstPersonController : MonoBehaviour
         // the food pickups 
         if (colliderInfo.gameObject.tag == "food")
         {
-            colliderInfo.gameObject.SetActive(false);
+            colliderInfo.gameObject.GetComponent<FoodReset>().hidden = true;
+            //colliderInfo.gameObject.SetActive(false);
             this.playerStatsScript.adjustHunger(this.gameValues.pickUpsWorthFood);
         }
 
