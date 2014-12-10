@@ -7,4 +7,9 @@ public class UIManagerScript : MonoBehaviour {
 	{
 		Application.LoadLevel(level);
 	}
+
+	public void QuitGame()
+	{
+		Application.Quit ();
+	}
 }
