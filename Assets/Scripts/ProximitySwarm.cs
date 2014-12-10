@@ -10,7 +10,9 @@ public enum AIStates
     Wander,
 
     /// <summary> tells the AI to swarm </summary>
-    Swarm
+    Swarm,
+
+    Dance
 }
 
 public class ProximitySwarm : MonoBehaviour
@@ -47,7 +49,10 @@ public class ProximitySwarm : MonoBehaviour
         isJumping = 3,
 
         /// <summary> the attacking state </summary>
-        isAttacking = 4
+        isAttacking = 4,
+
+        /// <summary> cocking about </summary>
+        isDancing = 5
     }
 
     /// <summary> used to control animations </summary>
@@ -134,7 +139,7 @@ public class ProximitySwarm : MonoBehaviour
             swarmScript.enabled = false;
         }
 
-        int randNum = Random.Range(0, 2);
+        int randNum = Random.Range(0, 3);
         if (randNum == 0)
         {
             // stop 
@@ -143,6 +148,11 @@ public class ProximitySwarm : MonoBehaviour
 
             // idle 
             returnval = 0;
+        }
+        else if (randNum == 2)
+        {
+            if (animator != null) animator.SetInteger("animationState", (int)animationStates.isDancing);
+            Stop();
         }
         else
         {
