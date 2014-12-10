@@ -1,0 +1,213 @@
+fileFormatVersion: 2
+guid: 1eb22e67a0cb5c44da820cc4d8905ec1
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Box01
+    100002: Box02
+    100004: Box03
+    100006: Box04
+    100008: Box05
+    100010: Box06
+    100012: door lastik04
+    100014: door lastik05
+    100016: door lastik06
+    100018: Group01
+    100020: //RootNode
+    100022: helipact with chaghi02
+    100024: Line01
+    100026: Line04
+    100028: Line05
+    100030: Line06
+    100032: Line07
+    100034: Line08
+    100036: Line09
+    100038: Line10
+    100040: Line11
+    100042: Line21
+    100044: Line22
+    100046: Line23
+    100048: Line24
+    100050: Line25
+    100052: Object01
+    100054: Object02
+    100056: OilTank02
+    100058: Omni01
+    100060: PARE
+    100062: pare
+    100064: PARE2
+    400000: Box01
+    400002: Box02
+    400004: Box03
+    400006: Box04
+    400008: Box05
+    400010: Box06
+    400012: door lastik04
+    400014: door lastik05
+    400016: door lastik06
+    400018: Group01
+    400020: //RootNode
+    400022: helipact with chaghi02
+    400024: Line01
+    400026: Line04
+    400028: Line05
+    400030: Line06
+    400032: Line07
+    400034: Line08
+    400036: Line09
+    400038: Line10
+    400040: Line11
+    400042: Line21
+    400044: Line22
+    400046: Line23
+    400048: Line24
+    400050: Line25
+    400052: Object01
+    400054: Object02
+    400056: OilTank02
+    400058: Omni01
+    400060: PARE
+    400062: pare
+    400064: PARE2
+    2300000: Box01
+    2300002: Box02
+    2300004: Box03
+    2300006: Box04
+    2300008: Box05
+    2300010: Box06
+    2300012: door lastik04
+    2300014: door lastik05
+    2300016: door lastik06
+    2300018: helipact with chaghi02
+    2300020: Line01
+    2300022: Line04
+    2300024: Line05
+    2300026: Line06
+    2300028: Line07
+    2300030: Line08
+    2300032: Line09
+    2300034: Line10
+    2300036: Line11
+    2300038: Line21
+    2300040: Line22
+    2300042: Line23
+    2300044: Line24
+    2300046: Line25
+    2300048: Object01
+    2300050: Object02
+    2300052: OilTank02
+    2300054: PARE
+    2300056: PARE2
+    3300000: Box01
+    3300002: Box02
+    3300004: Box03
+    3300006: Box04
+    3300008: Box05
+    3300010: Box06
+    3300012: door lastik04
+    3300014: door lastik05
+    3300016: door lastik06
+    3300018: helipact with chaghi02
+    3300020: Line01
+    3300022: Line04
+    3300024: Line05
+    3300026: Line06
+    3300028: Line07
+    3300030: Line08
+    3300032: Line09
+    3300034: Line10
+    3300036: Line11
+    3300038: Line21
+    3300040: Line22
+    3300042: Line23
+    3300044: Line24
+    3300046: Line25
+    3300048: Object01
+    3300050: Object02
+    3300052: OilTank02
+    3300054: PARE
+    3300056: PARE2
+    4300000: Box06
+    4300002: Box01
+    4300004: Box02
+    4300006: PARE
+    4300008: PARE2
+    4300010: helipact with chaghi02
+    4300012: Line08
+    4300014: Line06
+    4300016: Line10
+    4300018: Line09
+    4300020: Line07
+    4300022: Line01
+    4300024: Line04
+    4300026: Line11
+    4300028: Line05
+    4300030: OilTank02
+    4300032: Line22
+    4300034: Line23
+    4300036: Line24
+    4300038: Line21
+    4300040: Object01
+    4300042: door lastik04
+    4300044: door lastik05
+    4300046: door lastik06
+    4300048: Line25
+    4300050: Box03
+    4300052: Box04
+    4300054: Box05
+    4300056: Object02
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -24,6 +24,8 @@ public class ProximitySwarm : MonoBehaviour
     public float wanderspeed = 3;
     private float currMoveSpeed;
 
+    public float spottingAngle = 70;
+
     public float minActionTime = 2;
     public float maxActionTime = 7;
     private float currTime;
@@ -77,13 +79,17 @@ public class ProximitySwarm : MonoBehaviour
     private void Update()
     {
         float distanceToPlayer = (transform.position - player.transform.position).magnitude;
-        if (distanceToPlayer <= changeDistance && distanceToPlayer > attackDistance)
+        if ((distanceToPlayer <= changeDistance && distanceToPlayer > attackDistance) 
+                //&& Vector3.Angle(player.transform.forward, transform.position - player.transform.position) < spottingAngle
+                )
         {
             // Swarm 
             animator.SetInteger("animationState", (int)animationStates.isRunning);
             Swarm();
         }
-        else if (distanceToPlayer <= changeDistance && distanceToPlayer <= attackDistance)
+        else if ((distanceToPlayer <= changeDistance && distanceToPlayer <= attackDistance) 
+            //&& Vector3.Angle(player.transform.forward, transform.position - player.transform.position) < spottingAngle
+                )
         {
             // Swarm 
             animator.SetInteger("animationState", (int)animationStates.isAttacking);
