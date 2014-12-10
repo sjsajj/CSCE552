@@ -100,15 +100,14 @@ public class FirstPersonController : MonoBehaviour
             currentSpeed = this.movementSpeed;
         }
 
+        float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
+        float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
+
         if (Input.GetMouseButton(0))
         {
             animator.SetInteger("animationState", (int)AnimationStates.isAttacking);
         }
-
-        float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
-        float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
-
-        if (((forwardSpeed != 0) || (sideSpeed != 0)) && (!Input.GetMouseButton(0)))
+        else if (((forwardSpeed != 0) || (sideSpeed != 0)) && (!Input.GetMouseButton(0)))
         {
             // animationState = AnimationStates.isWalking;
             animator.SetInteger("animationState", (int)AnimationStates.isWalking);

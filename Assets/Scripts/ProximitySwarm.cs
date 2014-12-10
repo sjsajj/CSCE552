@@ -84,7 +84,7 @@ public class ProximitySwarm : MonoBehaviour
                 )
         {
             // Swarm 
-            animator.SetInteger("animationState", (int)animationStates.isRunning);
+            if (animator != null) animator.SetInteger("animationState", (int)animationStates.isRunning);
             Swarm();
         }
         else if ((distanceToPlayer <= changeDistance && distanceToPlayer <= attackDistance) 
@@ -92,7 +92,7 @@ public class ProximitySwarm : MonoBehaviour
                 )
         {
             // Swarm 
-            animator.SetInteger("animationState", (int)animationStates.isAttacking);
+            if (animator != null) animator.SetInteger("animationState", (int)animationStates.isAttacking);
             Swarm();
         }
         else if (currState == AIStates.Swarm)
@@ -135,7 +135,7 @@ public class ProximitySwarm : MonoBehaviour
         if (randNum == 0)
         {
             // stop 
-            animator.SetInteger("animationState", (int)animationStates.isIdle);
+            if (animator != null) animator.SetInteger("animationState", (int)animationStates.isIdle);
             Stop();
 
             // idle 
@@ -144,7 +144,7 @@ public class ProximitySwarm : MonoBehaviour
         else
         {
             // wander 
-            animator.SetInteger("animationState", (int)animationStates.isWalking);
+            if (animator != null) animator.SetInteger("animationState", (int)animationStates.isWalking);
             Wander();
             returnval = 1;
         }
