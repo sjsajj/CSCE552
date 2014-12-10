@@ -90,7 +90,6 @@ public class PlayerStats : MonoBehaviour
         // normal updating of the health values we dont have to do this every update but it will keep us from forgetting to do it 
         UpDateStatValues();
 
-        // TODO update the win loss conditions 
     }
 
     /// <summary> subtracts 1 day from the days until rescued (the player wins the game) </summary>
@@ -101,7 +100,7 @@ public class PlayerStats : MonoBehaviour
 
         if(playerWinLoss.DaysUntilRescued <=0)
         {
-            ////SendMessage("GOWin");
+            sceneManager.SendMessage("GOWin");
         }
     }
 
