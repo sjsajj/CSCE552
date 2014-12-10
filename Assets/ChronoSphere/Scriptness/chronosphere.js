@@ -1,3 +1,5 @@
+#pragma downcast
+
 //Set the length of a full day, measured in minutes
 var daySpeed = 0.0 ;  
 //Tracks what the current hour is

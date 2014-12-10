@@ -81,8 +81,6 @@ public class PlayerStats : MonoBehaviour
         UpDateStatValues();
 
         // TODO update the win loss conditions 
-
-		playerWinLoss.DaysUntilFound = -1;
     }
 
     #region Stat updates
