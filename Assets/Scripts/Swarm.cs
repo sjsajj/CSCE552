@@ -7,7 +7,7 @@ public class Swarm : MonoBehaviour
     public float rapeRadius = 1.5f;
 
     // public float attackDistance = 5; 
-    public GameObject swarmObj = GameObject.Find("Player");
+    public GameObject swarmObj;
 
     /// <summary> used to control animations </summary>
     //// public enum AnimationStates : int { isIdle = 0, isWalking = 1, isRunning = 2, isJumping = 3, isAttacking = 4 }; 
