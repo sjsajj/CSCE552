@@ -25,6 +25,9 @@ public class PlayerStats : MonoBehaviour
     /// <summary> the plays current hydration </summary>
     public float hydration = 100;
 
+    /// <summary> how long the days will be in minutes </summary>
+    public float dayLength = 1;
+
     /// <summary> the maximum amount of health the player can have </summary>
     private float maxHealth = 100;
 
@@ -34,8 +37,13 @@ public class PlayerStats : MonoBehaviour
     /// <summary> the maximum amount of hydration the player can have </summary>
     private float maxHydration = 100;
 
+    /// <summary> the sceneManager ask john what this does </summary>
     private GameObject sceneManager;
-	private WinLoss playerWinLoss;
+
+    /// <summary> the variable that controls the GUI display for how many days until you win </summary>
+    private WinLoss playerWinLoss;
+
+    
 
     // Use this for initialization 
     private void Start()
@@ -46,9 +54,9 @@ public class PlayerStats : MonoBehaviour
         HealthBar playerHealthBar = GetComponent<HealthBar>();
         HungerBar playerHungerBar = GetComponent<HungerBar>();
         HydrationBar playerHydrationBar = GetComponent<HydrationBar>();
-		playerWinLoss = GetComponent<WinLoss>();
+        playerWinLoss = GetComponent<WinLoss>();
 
-        // setting the max values
+        // setting the max values 
         maxHealth = health;
         maxHunger = hunger;
         maxHydration = hydration;
@@ -64,8 +72,10 @@ public class PlayerStats : MonoBehaviour
         playerHungerBar.MaxHunger = (int)maxHunger;
 
         // setting the intital values of the win loss conditons 
-        playerWinLoss.DaysUntilFound = daysUntilFound;
         playerWinLoss.DaysUntilRescued = daysUntilRescued;
+
+        // decrements the days until the player wins the game every dayLength minutes
+        InvokeRepeating("DecrementDaysUntilRescued", 60 * dayLength, 60 * dayLength);
 
         if (gameValues == null)
             print("please add the script that has all the values for the game\nsuch as the health/food loss rates");
@@ -83,7 +93,17 @@ public class PlayerStats : MonoBehaviour
         // TODO update the win loss conditions 
     }
 
-    #region Stat updates
+    /// <summary> subtracts 1 day from the days until rescued (the player wins the game) </summary>
+    private void DecrementDaysUntilRescued()
+    {
+        //decrementing the days until the player wins
+        playerWinLoss.DaysUntilRescued -= 1;
+
+        if(playerWinLoss.DaysUntilRescued <=0)
+        {
+            SendMessage("GOWin");
+        }
+    }
 
     /// <summary> deducts a defined amount from hunger and hydration and health if either hunger or hydration is 0 </summary>
     private void PasiveStatLoss()
@@ -95,7 +115,6 @@ public class PlayerStats : MonoBehaviour
             hunger -= gameValues.hungerLossRate * Time.deltaTime * gameValues.sprintLossRateModifier;
             hydration -= gameValues.hydrationLossRate * Time.deltaTime * gameValues.sprintLossRateModifier;
         }
-
         else
         {
             // the normal loss rate of hunger nad hydration if not sprinting 
@@ -115,7 +134,7 @@ public class PlayerStats : MonoBehaviour
             }
         }
 
-        // making sure we dont go to low
+        // making sure we dont go to low 
         statBoundsChecking();
     }
 
@@ -170,10 +189,6 @@ public class PlayerStats : MonoBehaviour
         playerHungerBar.CurrentHunger = (int)hunger;
     }
 
-    #endregion Stat updates
-
-    #region Adjustment for stat values
-
     /// <summary> lets you modify the value of daysUntilFound by sending in how much you want to change it by </summary>
     /// <remarks>
     /// If you would like to increment the value send in a positive value If you would like to decrement the value send in a negative value The amount
@@ -223,11 +238,9 @@ public class PlayerStats : MonoBehaviour
     /// If you would like to increment the value send in a positive value If you would like to decrement the value send in a negative value The amount
     /// you send in will be added to the value of hydration
     /// </remarks>
-    /// <param name="amount"> the amount to change the value by</param>
+    /// <param name="amount"> the amount to change the value by </param>
     public void adjustHydration(float amount)
     {
         hydration += amount;
     }
-
-    #endregion Adjustment for stat values
 }
