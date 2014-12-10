@@ -111,7 +111,10 @@ public class ProximitySwarm : MonoBehaviour
             }
         }
 
-        transform.Translate(transform.forward * currMoveSpeed * Time.deltaTime, Space.World);
+        if (distanceToPlayer > 10)
+        {
+            transform.Translate(transform.forward * currMoveSpeed * Time.deltaTime, Space.World); 
+        }
     }
 
     private void Swarm()
