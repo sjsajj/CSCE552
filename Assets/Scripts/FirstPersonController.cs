@@ -179,5 +179,11 @@ public class FirstPersonController : MonoBehaviour
         {
             this.playerStatsScript.adjustHealth(this.gameValues.healthLostBearAttack * Time.deltaTime);
         }
+        
+        // if the tag is putin we apply 3x damage 
+        if (colliderInfo.gameObject.tag == "putin")
+        {
+            this.playerStatsScript.adjustHealth(this.gameValues.healthLostBearAttack * Time.deltaTime * 3);
+        }
     }
 }
