@@ -29,7 +29,7 @@ public class ProximitySwarm : MonoBehaviour
     public float minActionTime = 2;
     public float maxActionTime = 7;
     private float currTime;
-    public GameObject player;
+    public GameObject player = GameObject.Find("Player");
 
     /// <summary> used to control animations </summary>
     public enum animationStates : int
