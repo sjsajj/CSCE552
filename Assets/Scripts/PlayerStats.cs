@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public int daysUntilFound = 10;
 
     /// <summary> the game values for functions </summary>
-    public values gameValues;
+    public Values gameValues;
 
     /// <summary> the players current health </summary>
     public float health = 100;
@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
         healthBar playerHealthBar = GetComponent<healthBar>();
         hungerBar playerHungerBar = GetComponent<hungerBar>();
         hydrationBar playerHydrationBar = GetComponent<hydrationBar>();
-        winLoss playerWinLoss = GetComponent<winLoss>();
+        WinLoss playerWinLoss = GetComponent<WinLoss>();
 
         // setting the max values
         maxHealth = health;

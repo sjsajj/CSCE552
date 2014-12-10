@@ -23,16 +23,22 @@ public class FirstPersonController : MonoBehaviour
     public float jumpForce = 500;
 
     /// <summary> the game values for functions </summary>
-    public values gameValues;
+    public Values gameValues;
 
     /// <summary> the script that has all of the players stats. assigned in the inspector </summary>
     public PlayerStats playerStatsScript;
 
+    /// <summary> used to control animations </summary>
+    public AnimationStates animationState = AnimationStates.isIdle;
+
     /// <summary> used to make sure the player can not move the Camera that a human head could not </summary>
     private float verticalRotation = 0;
 
+    /// <summary> local animator object </summary>
+    private Animator animator;
+
     /// <summary> used to control animations </summary>
-    public enum animationStates : int
+    public enum AnimationStates : int
     {
         /// <summary> the idle state </summary>
         isIdle = 0,
@@ -48,13 +54,7 @@ public class FirstPersonController : MonoBehaviour
 
         /// <summary> the attacking state </summary>
         isAttacking = 4
-    };
-
-    /// <summary> used to control animations </summary>
-    public animationStates animationState = animationStates.isIdle;
-
-    /// <summary> local animator object </summary>
-    private Animator animator;
+    }
 
     /// <summary> Use this for initialization </summary>
     private void Start()
@@ -88,29 +88,35 @@ public class FirstPersonController : MonoBehaviour
     /// <summary> updates the position of the player based on the keyboard input </summary>
     private void UpdateMovement()
     {
-        //sprinting if shift is pressed
+        // sprinting if shift is pressed
         if (Input.GetKeyDown(KeyCode.LeftShift).Equals(true))
         {
-            //print("Sprint");
+            // print("Sprint");
             currentSpeed = this.runSpeed;
         }
         else if (Input.GetKey(KeyCode.LeftShift).Equals(false))
         {
-            //print("Walk");
+            // print("Walk");
             currentSpeed = this.movementSpeed;
         }
 
         if (Input.GetMouseButton(0))
-            animator.SetInteger("animationState", (int)animationStates.isAttacking);
+        {
+            animator.SetInteger("animationState", (int)AnimationStates.isAttacking);
+        }
 
         float forwardSpeed = Input.GetAxis("Vertical") * this.currentSpeed;
         float sideSpeed = Input.GetAxis("Horizontal") * this.currentSpeed;
 
-        if (forwardSpeed != 0 || sideSpeed != 0 && !Input.GetMouseButton(0))
-            //animationState = animationStates.isWalking;
-            animator.SetInteger("animationState", (int)animationStates.isWalking);
+        if (((forwardSpeed != 0) || (sideSpeed != 0)) && (!Input.GetMouseButton(0)))
+        {
+            // animationState = AnimationStates.isWalking;
+            animator.SetInteger("animationState", (int)AnimationStates.isWalking);
+        }
         else if (!Input.GetMouseButton(0))
-            animator.SetInteger("animationState", (int)animationStates.isIdle);
+        {
+            animator.SetInteger("animationState", (int)AnimationStates.isIdle);
+        }
 
         Vector3 speed = new Vector3(sideSpeed, 0, forwardSpeed);
 
@@ -118,10 +124,10 @@ public class FirstPersonController : MonoBehaviour
 
         CharacterController cc = GetComponent<CharacterController>();
 
-        //jump in space is pressed
+        // jump in space is pressed
         if (Input.GetKey(KeyCode.Space) && cc.isGrounded)
         {
-            animator.SetInteger("animationState", (int)animationStates.isJumping);
+            animator.SetInteger("animationState", (int)AnimationStates.isJumping);
             rigidbody.AddForce(Vector3.up * jumpForce);
         }
 

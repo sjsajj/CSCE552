@@ -1,33 +1,43 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-// displays a horizontal bar with a max and min value which will appear in text on the bar 
+/// <summary> displays a horizontal bar with a max and min value which will appear in text on the bar </summary>
 public class GUIBarHorizontal : MonoBehaviour
 {
-    // values for the bar 
+    /// <summary> the maximum value the bar can display </summary>
     public int maxValue = 110;
 
+    /// <summary> the value displayed on the top of the fraction </summary>
     public int currentValue = 100;
 
-    // use this to control how much space the value read out has 
+    /// <summary> use this to control how much space the value read out has </summary>
     public int textSize = 50;
 
-    // positioning the bar 
+    /// <summary> how far the bar is from the top of the screen </summary>
     public int positionTop = 10;
 
+    /// <summary> how far the bar is from the left of the screen </summary>
     public int positionLeft = 10;
+
+    /// <summary> how tall the bar is, check this if the text is not fitting in the bar </summary>
     public int barHeight = 20;
+
+    /// <summary> also controls how wide the bar is check if things are not fitting in the bar </summary>
     public float barWidth = 2;
 
-    // this will be set by the code 
-    private float valueBarLength;
-
-    private float screenSize;
-
-    // texturing the bar 
+    /// <summary> use the inspector in unity to assign this value </summary>
+    /// <remarks> this is the image that will be displayed when the bar value does down </remarks>
     public Texture2D backgroundImage;
 
+    /// <summary> use the inspector in unity to assign this value </summary>
+    /// <remarks> this is the image that will be displayed as the value and will change size depending on the currentValue </remarks>
     public Texture2D foregroundImage;
+
+    /// <summary> this will be set by the code </summary>
+    private float valueBarLength;
+
+    /// <summary> used to determine how wide the draw the bar </summary>
+    private float screenSize;
 
     /// <summary> Use this for initialization </summary>
     private void Start()

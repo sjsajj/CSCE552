@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary> this object hold the values used for most of the functions in the game </summary>
-public class values : MonoBehaviour
+public class Values : MonoBehaviour
 {
     /// <summary> how much hunger gets restored </summary>
     public float pickUpsWorthFood = 25;
