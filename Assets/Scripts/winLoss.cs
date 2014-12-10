@@ -43,11 +43,12 @@ public class WinLoss : MonoBehaviour
             }
         }
     }
-
+	
+	public GUIStyle myGUIStyle;
     /// <summary> rendering the text on screen </summary>
     private void OnGUI()
     {
         // the text that displays the current health over the max helth 
-        GUI.Label(new Rect(Screen.width - this.positionLeftRescued, this.positionTopRescued, this.textSize, this.barHeight), this.rescuedText + this.daysUntilRescued);
+        GUI.Label(new Rect(Screen.width - this.positionLeftRescued, this.positionTopRescued, this.textSize, this.barHeight), this.rescuedText + this.daysUntilRescued, myGUIStyle);
     }
 }
