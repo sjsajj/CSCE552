@@ -4,6 +4,7 @@ using UnityEngine;
 public class Swarm : MonoBehaviour
 {
     public float moveSpeed = 5;
+    public float rapeRadius = 1.5f;
 
     // public float attackDistance = 5; 
     public GameObject swarmObj;
@@ -35,11 +36,12 @@ public class Swarm : MonoBehaviour
 
     private void Flock()
     {
+        float distanceToPlayer = (transform.position - swarmObj.transform.position).magnitude;
         this.transform.LookAt(swarmObj.transform);
         Vector3 tempVect = transform.eulerAngles;
         tempVect.x = 0;
         tempVect.z = 0;
         transform.eulerAngles = tempVect;
-        transform.Translate(moveSpeed * transform.forward * Time.deltaTime, Space.World);
+        if (distanceToPlayer > rapeRadius) transform.Translate(moveSpeed * transform.forward * Time.deltaTime, Space.World);
     }
 }
